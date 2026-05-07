@@ -1,0 +1,22 @@
+name: Lara Bot 7/24
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Her 6 saatte bir tetiklenir
+  workflow_dispatch: # Manuel başlatma imkanı sağlar
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodu Çek
+        uses: actions/checkout@v3
+      - name: Python Kur
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Kütüphaneleri Yükle
+        run: pip install -r requirements.txt
+      - name: Botu Çalıştır
+        env:
+          TOKEN: ${{ secrets.BOT_TOKEN }} # Gizli değişken kullanımı
+        run: python src/app.py
