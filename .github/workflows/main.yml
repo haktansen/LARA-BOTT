@@ -20,3 +20,4 @@ jobs:
         env:
           TOKEN: ${{ secrets.BOT_TOKEN }} # Gizli değişken kullanımı
         run: python src/app.py
+
